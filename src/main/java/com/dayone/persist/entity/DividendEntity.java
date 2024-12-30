@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 
 @Entity(name = "DIVIDEND")
 @Getter
-@Setter
 @NoArgsConstructor
 @ToString
 public class DividendEntity {
