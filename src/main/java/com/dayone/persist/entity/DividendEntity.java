@@ -1,5 +1,6 @@
 package com.dayone.persist.entity;
 
+import com.dayone.model.Dividend;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,4 +26,10 @@ public class DividendEntity {
     private LocalDateTime date;
 
     private String dividend;
+
+    public DividendEntity(Long comanyId, Dividend dividend) {
+        this.comanyId = comanyId;
+        this.date = dividend.getDate();
+        this.dividend = dividend.getDividend();
+    }
 }

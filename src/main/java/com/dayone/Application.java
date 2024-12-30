@@ -16,11 +16,6 @@ import java.io.IOException;
 @SpringBootApplication
 public class Application {
     public static void main(String[] args) {
-//        SpringApplication.run(Application.class, args);
-
-        Scraper scraper = new YahooFinanceScraper();
-//        var result = scraper.scrap(Company.builder().ticker("NKE").build());
-        var result = scraper.scrapCompanyByTicker("NKE");
-        System.out.println(result);
+        SpringApplication.run(Application.class, args);
     }
 }
