@@ -21,14 +21,14 @@ public class DividendEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long comanyId;
+    private Long companyId;
 
     private LocalDateTime date;
 
     private String dividend;
 
-    public DividendEntity(Long comanyId, Dividend dividend) {
-        this.comanyId = comanyId;
+    public DividendEntity(Long companyId, Dividend dividend) {
+        this.companyId = companyId;
         this.date = dividend.getDate();
         this.dividend = dividend.getDividend();
     }
