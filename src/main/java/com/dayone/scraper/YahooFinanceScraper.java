@@ -15,11 +15,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class YahooFinanceScraper {
+public class YahooFinanceScraper implements Scraper {
     private static final String URL = "https://finance.yahoo.com/quote/%s/history/?frequency=1mo&period1=%d&period2=%d";
+    private static final String SUMMARY_URL = "https://finance.yahoo.com/quote/%s?p=%s";
 
     private static final long START_TIME = 86400; // 60 * 60 * 24
 
+    @Override
     public ScrapedResult scrap(Company company) {
         var scrapResult = new ScrapedResult();
         scrapResult.setCompany(company);
@@ -63,5 +65,24 @@ public class YahooFinanceScraper {
         }
 
         return scrapResult;
+    }
+
+    @Override
+    public Company scrapCompanyByTicker(String ticker) {
+        String url = String.format(SUMMARY_URL, ticker, ticker);
+
+        try {
+            Document document = Jsoup.connect(url).get();
+            Element titleElement = document.getElementsByAttributeValue("class", "yf-xxbei9").get(0);
+//            System.out.println(titleElement);
+//            String title = titleElement.text().split(" - ")[1].trim();
+
+            return Company.builder()
+                    .ticker(ticker)
+                    .name(titleElement.text())
+                    .build();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
