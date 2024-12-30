@@ -1,11 +1,16 @@
 package com.dayone.web;
 
 import com.dayone.model.Company;
+import com.dayone.persist.entity.CompanyEntity;
 import com.dayone.service.CompanyService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/company")
@@ -21,8 +26,9 @@ public class CompanyController {
 
     // 회사 리스트 조회
     @GetMapping
-    public ResponseEntity<?> searchCompany() {
-        return null;
+    public ResponseEntity<?> searchCompany(final Pageable pageable) {
+        Page<CompanyEntity> companies = this.companyService.getAllCompanies(pageable);
+        return ResponseEntity.ok(companies);
     }
 
     // 회사 정보 저장
