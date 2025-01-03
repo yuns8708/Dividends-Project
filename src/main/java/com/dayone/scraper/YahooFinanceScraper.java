@@ -54,10 +54,8 @@ public class YahooFinanceScraper implements Scraper {
                     throw new RuntimeException("Unexcepted Month enum value -> " + splits[0]);
                 }
 
-                dividends.add(Dividend.builder()
-                        .date(LocalDateTime.of(year, month, day, 0, 0))
-                        .dividend(dividend)
-                        .build()
+                dividends.add(
+                        new Dividend(LocalDateTime.of(year, month, day, 0, 0), dividend)
                 );
             }
             scrapResult.setDividendEntities(dividends);
@@ -76,10 +74,7 @@ public class YahooFinanceScraper implements Scraper {
             Document document = Jsoup.connect(url).get();
             Element titleElement = document.getElementsByAttributeValue("class", "yf-xxbei9").get(0);
 
-            return Company.builder()
-                    .ticker(ticker)
-                    .name(titleElement.text())
-                    .build();
+            return new Company(ticker, titleElement.text());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
