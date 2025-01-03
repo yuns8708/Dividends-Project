@@ -20,6 +20,10 @@ spring:
     username: sa
     password:
 
+  redis:
+    host: localhost
+    port: 6379
+
 # 매일 정각에 실행
 scheduler:
   scrap:
