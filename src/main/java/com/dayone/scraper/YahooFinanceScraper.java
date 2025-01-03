@@ -35,7 +35,6 @@ public class YahooFinanceScraper implements Scraper {
             Document doc = connection.get();
 
             Elements parsingTable = doc.getElementsByAttributeValue("class", "table yf-j5d1ld noDl");
-//            Element element = elements.get(0);
 
             Element tbody = parsingTable.get(0).children().get(1);
             List<Dividend> dividends = new ArrayList<>();
@@ -76,8 +75,6 @@ public class YahooFinanceScraper implements Scraper {
         try {
             Document document = Jsoup.connect(url).get();
             Element titleElement = document.getElementsByAttributeValue("class", "yf-xxbei9").get(0);
-//            System.out.println(titleElement);
-//            String title = titleElement.text().split(" - ")[1].trim();
 
             return Company.builder()
                     .ticker(ticker)

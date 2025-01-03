@@ -3,7 +3,6 @@ package com.dayone.persist.entity;
 import com.dayone.model.Company;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
