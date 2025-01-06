@@ -43,6 +43,7 @@ public class ScraperScheduler {
                         // 배당금 정보가 db에 없으면 저장
                         if (!exists) {
                             this.dividendRepository.save(e);
+                            log.info("insert new dividend : " + e.toString());
                         }
                     });
 
